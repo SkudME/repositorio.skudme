@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+<addon id="repositorio.skudme" name="Skud.ME Addon Repositorio" version="1.0" provider-name="SkudME">
+	<extension point="xbmc.addon.repository" name="Skud.ME Addon Repositorio">
+		<info compressed="false">http://raw.github.com/SkudME/repositorio.skudme/master/addons.xml</info>
+		<checksum>http://raw.github.com/SkudME/repositorio.skudme/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/SkudME/repositorio.skudme/master/repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="pt">Instala addons de Skud.ME </summary>
+		<description lang="pt">Transfere e instala addons atravez do repositorio de Skud.ME.</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+</addons>

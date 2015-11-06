@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	<addon id="plugin.video.skudme" version="0.4" name="Skud.ME Kodi" provider-name="SkudME">
-		<requires>
-			<import addon="xbmc.python" version="2.14.0"/>
-		</requires>
-		<extension point="xbmc.python.pluginsource" library="main.py">
-			<provides>video</provides>
-		</extension>
-		<extension point="xbmc.addon.metadata">
-		<summary lang="pt">Skud.ME Kodi</summary>
-		<description lang="pt">Skud.ME video addon para Kodi.</description>
-		<disclaimer lang="pt">Brincadeira util para alguns.</disclaimer>
-		<source>http://kodi.skud.me/</source>
-	</extension>
+<addon id="plugin.video.skudme"
+version="0.5"
+name="Skud.ME Kodi Addon"
+provider-name="SkudME">
+<requires>
+  <import addon="xbmc.python" version="2.14.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource" library="main.py">
+  <provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+  <summary lang="pt">Skud.ME Kodi</summary>
+  <description lang="pt">Skud.ME video addon para Kodi.</description>
+  <disclaimer lang="pt">Brincadeira util para alguns.</disclaimer>
+</extension>
 </addon>

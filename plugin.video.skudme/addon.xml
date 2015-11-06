@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-	<addon id="plugin.video.skudme" version="0.3" name="Skud.ME Kodi" provider-name="SkudME">
+	<addon id="plugin.video.skudme" version="0.4" name="Skud.ME Kodi" provider-name="SkudME">
 		<requires>
 			<import addon="xbmc.python" version="2.14.0"/>
 		</requires>
@@ -10,7 +10,6 @@
 		<summary lang="pt">Skud.ME Kodi</summary>
 		<description lang="pt">Skud.ME video addon para Kodi.</description>
 		<disclaimer lang="pt">Brincadeira util para alguns.</disclaimer>
-		<source>http://kodi.skud.me/repo/</source>
-		<website>http://kodi.skud.me/repo/</website>
+		<source>http://kodi.skud.me/</source>
 	</extension>
 </addon>

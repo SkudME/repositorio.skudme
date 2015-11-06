@@ -18,7 +18,6 @@ __handle__ = int(sys.argv[1])
 # from some web-site or online service.
 VIDEOS = {
 	'One Piece - http://onepiecex.com.br/': [{
-	'One Piece - http://onepiecex.com.br/':[{
 	{'name': 'East Blue [1 ao 60]',
 	'thumb': 'http://onepiecex.com.br/wp-content/themes/oputd/imagens/menuEpi/east_blue.png',
 	'video': 'http://shogun.onepieceex.com.br/episodios/online/OpEx_001_online.webm?st=vxZZvuXieYt_3J3mjSdytg&e=1446742059',
@@ -31,7 +30,7 @@ VIDEOS = {
 	'thumb': 'http://www.vidsplay.com/vids/turtle.jpg',
 	'video': 'http://www.vidsplay.com/vids/turtle.mp4',
 	'genre': 'One Piece - http://onepiecex.com.br/'}
-	]}],
+	}],
 	'Teste1': [{'name': 'Postal Truck',
 	'thumb': 'http://www.vidsplay.com/vids/us_postal.jpg',
 	'video': 'http://www.vidsplay.com/vids/us_postal.mp4',
@@ -69,8 +68,8 @@ VIDEOS = {
 	{'name': 'Pizza',
 	'thumb': 'http://www.vidsplay.com/vids/pizza.jpg',
 	'video': 'http://www.vidsplay.com/vids/pizza.mp4',
-	'genre': 'Teste3'}
-]}
+	'genre': 'Teste3'}]
+}
 
 
 def get_categories():

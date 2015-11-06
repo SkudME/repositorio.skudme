@@ -1,2 +1,5 @@
-0.1Beta (5/11/2015):
+0.1 (5/11/2015):
 Em construcao!
+
+0.2 (5/11/2015):
+Site onepiece load, ainda em  construcao!

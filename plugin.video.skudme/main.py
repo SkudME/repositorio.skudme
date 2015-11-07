@@ -64,11 +64,7 @@ def lista_sagas_onepiece():
 	print match
 	
 	for ep, img in match:
-		print 'Ultimo Episodio - ' +ep
-		print 'http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/episodios/' +ep +'.mp4'
-		print oneURL +img
-		
-	addLink('Ultimo Episodio - ' +ep,'http://st01hd.animesproject.com.br/vod/O/one-piece/HQ/episodios/' +ep +'.mp4',img)
+		addLink('Ultimo Episodio - ' +ep,'http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/episodios/' +ep +'.mp4',img)
 	
 	#<a href="/midia/episodios/sagas/east-blue"><img alt="East Blue" src="/images/sagas/east.png"></a> #https://onepiece.zlx.com.br/ piecePROJECT
 	match = re.compile('<a href="(.+?)"><img alt="(.+?)" src="(.+?)" /></a>').findall(codigo_fonte) #https://onepiece.zlx.com.br/ piecePROJECT

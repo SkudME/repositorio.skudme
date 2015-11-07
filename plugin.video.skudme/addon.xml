@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.skudme"
-version="0.5"
+version="0.6"
 name="Skud.ME Kodi Addon"
 provider-name="SkudME">
 <requires>

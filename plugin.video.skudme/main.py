@@ -65,7 +65,7 @@ def lista_sagas_onepiece():
 	
 	for ep, img in match:
 		print 'Ultimo Episodio - ' +ep
-		print 'http://st01hd.animesproject.com.br/vod/O/one-piece/HQ/episodios/' +ep +'.mp4'
+		print 'http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/episodios/' +ep +'.mp4'
 		print oneURL +img
 		
 	addLink('Ultimo Episodio - ' +ep,'http://st01hd.animesproject.com.br/vod/O/one-piece/HQ/episodios/' +ep +'.mp4',img)

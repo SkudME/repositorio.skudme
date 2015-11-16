@@ -16,13 +16,12 @@ import re
 # Get the plugin handle as an integer number.
 __handle__ = int(sys.argv[1])
 
-versao = '1.1'
+versao = '1.2'
 addon_id = 'plugin.video.skudme'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
 artfolder = addonfolder + '/resources/img/'
 fanart = addonfolder + '/fanart.jpg'
-oneURL = 'https://onepiece.zlx.com.br'
 oneEP = 'http://st01hd.animesproject.com.br:81/O/one-piece/MQ/episodios/'
 narEP = 'http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/episodios/'
 fairEP = 'http://st01hd.animesproject.com.br:81/F/fairy-tail-2014/MQ/episodios/'
@@ -48,35 +47,19 @@ def addLink(name,url,iconimage):
 
 
 def MenuPrincipal():
-	addDir('One Piece','https://onepiece.zlx.com.br/midia/episodios/sagas',1,'http://www.aliancaproject.com.br/imgs_index/bg_pp.jpg',{'title': 'One Piece'}) #https://onepiece.zlx.com.br/ piecePROJECT
-	addDir('Naruto','',2,'http://www.aliancaproject.com.br/imgs_index/bg_np.jpg',{'title': 'Naruto'})
-	addDir('Fairy Tail','',3,'http://www.aliancaproject.com.br/imgs_index/bg_fyp.jpg',{'title': 'Fairy Tail'})
+	addDir('One Piece','',1,artfolder +'onepiece.png',{'title': 'One Piece'}) 
+	addDir('Naruto','',2,artfolder +'naruto.png',{'title': 'Naruto'})
+	addDir('Fairy Tail','',3,artfolder +'fairytail.png',{'title': 'Fairy Tail'})
 	
-#http://onepiecex.com.br/ onepiecex ou https://onepiece.zlx.com.br/ piecePROJECT
-#http://boruto.com.br/ narutoPROJECT
-#http://fairytail.blog.br/ fairyPROJECT
-	
-def onepiece():
-	print"Sagas One Piece"
-	lista_sagas_onepiece()
-	addDir('Filmes','',13,artfolder +'filmes.png',{'title': 'Filmes'})
-
-def lista_sagas_onepiece():
-	codigo_fonte = obterURL(url)
-	
-	match = re.compile('<a href="http://onepieceproject.xpg.uol.com.br/episodios/episodio-(.+?)/" target="_blank"><img src="(.+?)" alt="latest episode" /></a>').findall(obterURL(oneURL)) #https://onepiece.zlx.com.br/ piecePROJECT
+def listar_onepiece():
+	match = re.compile('<a alt=".+?" href=".+?"><u>Episódio (.+?)</u></a>').findall(obterURL('http://animes.zlx.com.br/serie/117/0/One-Piece')) 
 	print match
 	
-	addDir('Ir para o Episodio','',100,artfolder +"goto.png",{'title': 'Ir para o Episodio'})
-	
-	for ep, img in match:
-		addLink('Ultimo Episodio - ' +ep,'' +ep +'.mp4',img)
-	
-	#<a href="/midia/episodios/sagas/east-blue"><img alt="East Blue" src="/images/sagas/east.png"></a> #https://onepiece.zlx.com.br/ piecePROJECT
-	match = re.compile('<a href="(.+?)"><img alt="(.+?)" src="(.+?)" /></a>').findall(codigo_fonte) #https://onepiece.zlx.com.br/ piecePROJECT
-	
-	for urlAux, titulo, img in match:
-		addDir(titulo,str(oneURL+urlAux),10,str(oneURL+img),{'title': titulo}) #https://onepiece.zlx.com.br/ piecePROJECT
+	addDir('One Piece','',0,'http://animes.zlx.com.br/imgs/series/small/30ff3cba97dd1d2.jpg',{'title': 'One Piece'})
+	addLink('Ultimo Episodio - ' +match[0],oneEP +match[0] +'.mp4',oneEP +match[0] +'.jpg')
+	addDir('Do 000 ate 718','',0,'http://animes.zlx.com.br/imgs/series/small/4cb6174c3ef8bfb.jpg',{'title': 'Do 000 ate 718'})
+	addDir('Ir para o Episodio','',110,artfolder +"goto.png",{'title': 'Ir para o Episodio'})	
+	addDir('Filmes','',13,artfolder +'filmes.png',{'title': 'Filmes'})
 
 def listar_onepiece_filmes():	
 	addLink('One Piece: The Movie','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/01.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/01.jpg')
@@ -91,36 +74,7 @@ def listar_onepiece_filmes():
 	addLink('One Piece Film: World Strong','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/10.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/10.jpg')
 	addLink('One Piece 3D: Perseguição aos Chapéus de Palha','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/11.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/11.jpg')
 	addLink('One Piece Film: Z','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/12.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/12.jpg')
-		
-def listar_episodios_onepiece(url):
-	codigo_fonte = obterURL(url)
 	
-	#<div class="new_release_screen"><img src="/images/screens/onepiece001lan.jpg" alt="screen" style="margin-top:-7px;"/></div>
-	#<div class="new_release_titulo"><h1>Episódio<b>001</b></h1></div>
-	#<a href="/assistir-online/001/shxmq/files/6376353644/PP-E_001_MQ.mp4" target=_blank><img src="/release/online.png" width="212" height="65" border="0" class="download_but" /></a>
-
-	img = '<div class="new_release_screen"><img src="(.+?)" alt="screen" style="margin-top:-7px;"/></div>'
-	titulo = '<div class="new_release_titulo"><h1>(.+?)</h1></div>'
-	urlAux = '<a href="(.+?)" target=_blank><img src="/release/online.png" width="212" height="65" border="0" class="download_but" /></a>'
-	
-	TotalItems = 0
-	imgs = []
-	titulos = []
-	urls = []
-	
-	for match in re.findall(img, codigo_fonte):
-		imgs.append(match)
-		TotalItems+=1
-		
-	for match in re.findall(titulo, codigo_fonte):
-		titulos.append(match)
-		
-	for match in re.findall(urlAux, codigo_fonte):
-		urls.append(match)
-	
-	for x in xrange(0, TotalItems):
-		addLink(titulos[x].replace('<b>',' ').replace('</b>',''),str('http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/episodios/' +titulos[x].replace('Episódio<b>','').replace('</b>','') +'.mp4'),str(oneURL+imgs[x]))
-
 def listar_naruto():
 	addDir('Naruto','',21,'http://animes.zlx.com.br/imgs/series/small/4cb6174c3ef8bfb.jpg',{'title': 'Naruto'})
 	addDir('Naruto: Shippuuden','',22,'http://animes.zlx.com.br/imgs/series/small/b39ad17d80d0083.jpg',{'title': 'Naruto: Shippuuden'})
@@ -259,11 +213,13 @@ print ("iconimage: "+str(iconimage))
 if mode==None: 
 	MenuPrincipal()   
 elif mode==1:
-	onepiece()
+	listar_onepiece()
 elif mode==2:
 	listar_naruto()
 elif mode==3:
 	listar_fairyTail()
+elif mode==13:
+	listar_onepiece_filmes()
 elif mode==21:
 	listar_narutoNormal()
 elif mode==211:
@@ -278,10 +234,6 @@ elif mode==311:
 	listar_fairyTailNormal_ovas()
 elif mode==32:
 	listar_fairyTail2014()
-elif mode==10:
-	listar_episodios_onepiece(url)
-elif mode==13:
-	listar_onepiece_filmes()
 elif mode==100:
 	goto_geral('O','one-piece')
 elif mode==210:

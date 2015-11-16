@@ -16,7 +16,7 @@ import re
 # Get the plugin handle as an integer number.
 __handle__ = int(sys.argv[1])
 
-versao = '0.7'
+versao = '1.0'
 addon_id = 'plugin.video.skudme'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -25,7 +25,7 @@ fanart = addonfolder + '/fanart.jpg'
 oneURL = 'https://onepiece.zlx.com.br'
 oneEP = 'http://st01hd.animesproject.com.br:81/O/one-piece/MQ/episodios/'
 narEP = 'http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/episodios/'
-farEP = 'http://st01hd.animesproject.com.br:81/N/fairy-tail/MQ/episodios/'
+fairEP = 'http://st01hd.animesproject.com.br:81/F/fairy-tail-2014/MQ/episodios/'
 geralURL = 'http://st01hd.animesproject.com.br:81/'
 
 
@@ -123,15 +123,36 @@ def listar_narutoShippuuden():
 	addLink('Ultimo Episodio - ' +match[0],narEP +match[0] +'.mp4',narEP +match[0] +'.jpg')
 	
 	addDir('Do 000 ate ' +match[0],'',0,'http://animes.zlx.com.br/imgs/series/small/b39ad17d80d0083.jpg',{'title': 'Do 000 ate ' +match[0]})
-	addDir('Ir para o Episodio','',210,artfolder +"goto.png",{'title': 'Ir para o Episodio'})
+	addDir('Ir para o Episodio','',220,artfolder +"goto.png",{'title': 'Ir para o Episodio'})
+	
+def listar_fairyTail():
+	addDir('Fairy Tail','',31,'http://animes.zlx.com.br/imgs/series/small/205a078e9a010af.jpg',{'title': 'Fairy Tail'})
+	addDir('Fairy Tail 2014','',32,'http://animes.zlx.com.br/imgs/series/small/7c15d47e3be614a.jpg',{'title': 'Fairy Tail 2014'})
 
+def listar_fairyTailNormal():
+	addDir('Do 000 ate 259','',0,'http://animes.zlx.com.br/imgs/series/small/205a078e9a010af.jpg',{'title': 'Do 000 ate 259'})
+	addDir('Ir para o Episodio','',310,artfolder +"goto.png",{'title': 'Ir para o Episodio'})	
+
+def listar_fairyTail2014():
+	match = re.compile('<a alt=".+?" href=".+?"><u>Episódio (.+?)</u></a>').findall(obterURL('http://animes.zlx.com.br/serie/1091/0/Fairy-Tail-2014')) 
+	print match
+	
+	addDir('Fairy Tail 2014','',0,'http://animes.zlx.com.br/imgs/series/small/7c15d47e3be614a.jpg',{'title': 'Fairy Tail'})
+	addLink('Ultimo Episodio - ' +match[0],fairEP +match[0] +'.mp4',fairEP +match[0] +'.jpg')
+	
+	addDir('Do 00 ate ' +match[0],'',0,'http://animes.zlx.com.br/imgs/series/small/7c15d47e3be614a.jpg',{'title': 'Do 000 ate ' +match[0]})
+	addDir('Ir para o Episodio','',320,artfolder +"goto.png",{'title': 'Ir para o Episodio'})
+	
 def goto_geral(letra,serie):
 	keyb = xbmc.Keyboard('', 'Ir para o Episodio')
 	keyb.doModal()
 	if (keyb.isConfirmed()):
 		search = keyb.getText()
 		parametro_pesquisa=urllib.quote(search)
-		url = geralURL +letra +'/' +serie +'/MQ/episodios/' + str(parametro_pesquisa)
+		print serie +" " +parametro_pesquisa
+		if serie=='fairy-tail-2014' and int(parametro_pesquisa)<=81:
+			epN = parametro_pesquisa +'-p-'
+		url = geralURL +letra +'/' +serie +'/MQ/episodios/' + str(epN)
 		addLink('Episodio - ' +str(parametro_pesquisa),url +'.mp4',url +'.jpg')
 
 def obterURL(url):
@@ -189,18 +210,21 @@ print ("iconimage: "+str(iconimage))
 
 
 if mode==None: 
-	print "MenuPrincipal"
-	MenuPrincipal()
-   
+	MenuPrincipal()   
 elif mode==1:
-	print "Menu One Piece"
 	onepiece()
 elif mode==2:
 	listar_naruto()
+elif mode==3:
+	listar_fairyTail()
 elif mode==21:
 	listar_narutoNormal()
 elif mode==22:
 	listar_narutoShippuuden()
+elif mode==31:
+	listar_fairyTailNormal()
+elif mode==32:
+	listar_fairyTail2014()
 elif mode==10:
 	listar_episodios_onepiece(url)
 elif mode==100:
@@ -209,7 +233,9 @@ elif mode==210:
 	goto_geral('N','naruto')
 elif mode==220:
 	goto_geral('N','naruto-shippuuden')
-elif mode==300:
+elif mode==310:
 	goto_geral('F','fairy-tail')
+elif mode==320:
+	goto_geral('F','fairy-tail-2014')
 
 xbmcplugin.endOfDirectory(__handle__)

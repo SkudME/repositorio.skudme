@@ -16,13 +16,14 @@ import re
 # Get the plugin handle as an integer number.
 __handle__ = int(sys.argv[1])
 
-versao = '0.6'
+versao = '0.7'
 addon_id = 'plugin.video.skudme'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
 artfolder = addonfolder + '/resources/img/'
 fanart = addonfolder + '/fanart.jpg'
 oneURL = 'https://onepiece.zlx.com.br'
+oneEP = 'http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/episodios/'
 
 def addDir(name,url,mode,iconimage,infolabels):
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
@@ -56,6 +57,15 @@ def onepiece():
 #	addDir('Baroque Works[61 ao 130]','',2,'https://onepiece.zlx.com.br/images/sagas/baroque.png',{'title': 'Baroque Works[61 ao 130]'})
 	print"Sagas One Piece"
 	lista_sagas_onepiece()
+
+def goto_onepiece():
+	keyb = xbmc.Keyboard('', 'Ir para o Episodio')
+	keyb.doModal()
+	if (keyb.isConfirmed()):
+		search = keyb.getText()
+		parametro_pesquisa=urllib.quote(search)
+		url = oneEP + str(parametro_pesquisa)
+		addLink('Episodio - ' +str(parametro_pesquisa),url,artfolder +"goto.png")
 	
 def lista_sagas_onepiece():
 	codigo_fonte = obterURL(url)
@@ -63,8 +73,10 @@ def lista_sagas_onepiece():
 	match = re.compile('<a href="http://onepieceproject.xpg.uol.com.br/episodios/episodio-(.+?)/" target="_blank"><img src="(.+?)" alt="latest episode" /></a>').findall(obterURL(oneURL)) #https://onepiece.zlx.com.br/ piecePROJECT
 	print match
 	
+	addDir('Ir para o Episodio','',100,artfolder +"goto.png",{'title': 'Ir para o Episodio'})
+	
 	for ep, img in match:
-		addLink('Ultimo Episodio - ' +ep,'http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/episodios/' +ep +'.mp4',img)
+		addLink('Ultimo Episodio - ' +ep,'' +ep +'.mp4',img)
 	
 	#<a href="/midia/episodios/sagas/east-blue"><img alt="East Blue" src="/images/sagas/east.png"></a> #https://onepiece.zlx.com.br/ piecePROJECT
 	match = re.compile('<a href="(.+?)"><img alt="(.+?)" src="(.+?)" /></a>').findall(codigo_fonte) #https://onepiece.zlx.com.br/ piecePROJECT
@@ -101,9 +113,7 @@ def listar_episodios_onepiece(url):
 	
 	for x in xrange(0, TotalItems):
 		addLink(titulos[x].replace('<b>',' ').replace('</b>',''),str('http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/episodios/' +titulos[x].replace('Episódio<b>','').replace('</b>','') +'.mp4'),str(oneURL+imgs[x]))
-		
-def reproduzir_onepiece(url):
-	print url
+
 		
 def obterURL(url):
 	req = urllib2.Request(url)
@@ -168,7 +178,7 @@ elif mode==1:
 	onepiece()
 elif mode==10:
 	listar_episodios_onepiece(url)
-elif mode==11:
-	reproduzir_onepiece(url)
+elif mode==100:
+	goto_onepiece(url)
 	
 xbmcplugin.endOfDirectory(__handle__)

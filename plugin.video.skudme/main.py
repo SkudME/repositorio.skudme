@@ -149,9 +149,16 @@ def goto_geral(letra,serie):
 	if (keyb.isConfirmed()):
 		search = keyb.getText()
 		parametro_pesquisa=urllib.quote(search)
-		print serie +" " +parametro_pesquisa
+		print serie +" epN: " +parametro_pesquisa 
 		if serie=='fairy-tail-2014' and int(parametro_pesquisa)<=81:
 			epN = parametro_pesquisa +'-p-'
+		else:
+			epN = int(parametro_pesquisa)
+			if epN > 0 and epN < 10:
+				epN = '00' +str(epN)
+			elif epN > 9 and epN < 100:
+				epN = '0' +str(epN)
+			print epN
 		url = geralURL +letra +'/' +serie +'/MQ/episodios/' + str(epN)
 		addLink('Episodio - ' +str(parametro_pesquisa),url +'.mp4',url +'.jpg')
 

@@ -23,7 +23,11 @@ addonfolder = selfAddon.getAddonInfo('path')
 artfolder = addonfolder + '/resources/img/'
 fanart = addonfolder + '/fanart.jpg'
 oneURL = 'https://onepiece.zlx.com.br'
-oneEP = 'http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/episodios/'
+oneEP = 'http://st01hd.animesproject.com.br:81/O/one-piece/MQ/episodios/'
+narEP = 'http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/episodios/'
+farEP = 'http://st01hd.animesproject.com.br:81/N/fairy-tail/MQ/episodios/'
+geralURL = 'http://st01hd.animesproject.com.br:81/'
+
 
 def addDir(name,url,mode,iconimage,infolabels):
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
@@ -53,20 +57,9 @@ def MenuPrincipal():
 #http://fairytail.blog.br/ fairyPROJECT
 	
 def onepiece():
-#	addDir('East Blue[1 ao 60]','',1,'https://onepiece.zlx.com.br/images/sagas/east.png',{'title': 'East Blue[1 ao 60]'})
-#	addDir('Baroque Works[61 ao 130]','',2,'https://onepiece.zlx.com.br/images/sagas/baroque.png',{'title': 'Baroque Works[61 ao 130]'})
 	print"Sagas One Piece"
 	lista_sagas_onepiece()
 
-def goto_onepiece():
-	keyb = xbmc.Keyboard('', 'Ir para o Episodio')
-	keyb.doModal()
-	if (keyb.isConfirmed()):
-		search = keyb.getText()
-		parametro_pesquisa=urllib.quote(search)
-		url = oneEP + str(parametro_pesquisa)
-		addLink('Episodio - ' +str(parametro_pesquisa),url,artfolder +"goto.png")
-	
 def lista_sagas_onepiece():
 	codigo_fonte = obterURL(url)
 	
@@ -114,7 +107,33 @@ def listar_episodios_onepiece(url):
 	for x in xrange(0, TotalItems):
 		addLink(titulos[x].replace('<b>',' ').replace('</b>',''),str('http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/episodios/' +titulos[x].replace('Episódio<b>','').replace('</b>','') +'.mp4'),str(oneURL+imgs[x]))
 
-		
+def listar_naruto():
+	addDir('Naruto','',21,'http://animes.zlx.com.br/imgs/series/small/4cb6174c3ef8bfb.jpg',{'title': 'Naruto'})
+	addDir('Naruto: Shippuuden','',22,'http://animes.zlx.com.br/imgs/series/small/b39ad17d80d0083.jpg',{'title': 'Naruto: Shippuuden'})
+
+def listar_narutoNormal():
+	addDir('Do 000 ate 220','',0,'http://animes.zlx.com.br/imgs/series/small/4cb6174c3ef8bfb.jpg',{'title': 'Do 000 ate 220'})
+	addDir('Ir para o Episodio','',210,artfolder +"goto.png",{'title': 'Ir para o Episodio'})	
+
+def listar_narutoShippuuden():
+	match = re.compile('<a alt=".+?" href=".+?"><u>Episódio (.+?)</u></a>').findall(obterURL('http://animes.zlx.com.br/serie/144/0/Naruto-Shippuuden')) 
+	print match
+	
+	addDir('Naruto: Shippuuden','',0,'http://animes.zlx.com.br/imgs/series/small/b39ad17d80d0083.jpg',{'title': 'Naruto: Shippuuden'})
+	addLink('Ultimo Episodio - ' +match[0],narEP +match[0] +'.mp4',narEP +match[0] +'.jpg')
+	
+	addDir('Do 000 ate ' +match[0],'',0,'http://animes.zlx.com.br/imgs/series/small/b39ad17d80d0083.jpg',{'title': 'Do 000 ate ' +match[0]})
+	addDir('Ir para o Episodio','',210,artfolder +"goto.png",{'title': 'Ir para o Episodio'})
+
+def goto_geral(letra,serie):
+	keyb = xbmc.Keyboard('', 'Ir para o Episodio')
+	keyb.doModal()
+	if (keyb.isConfirmed()):
+		search = keyb.getText()
+		parametro_pesquisa=urllib.quote(search)
+		url = geralURL +letra +'/' +serie +'/MQ/episodios/' + str(parametro_pesquisa)
+		addLink('Episodio - ' +str(parametro_pesquisa),url +'.mp4',url +'.jpg')
+
 def obterURL(url):
 	req = urllib2.Request(url)
 	req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
@@ -176,9 +195,21 @@ if mode==None:
 elif mode==1:
 	print "Menu One Piece"
 	onepiece()
+elif mode==2:
+	listar_naruto()
+elif mode==21:
+	listar_narutoNormal()
+elif mode==22:
+	listar_narutoShippuuden()
 elif mode==10:
 	listar_episodios_onepiece(url)
 elif mode==100:
-	goto_onepiece(url)
-	
+	goto_geral('O','one-piece')
+elif mode==210:
+	goto_geral('N','naruto')
+elif mode==220:
+	goto_geral('N','naruto-shippuuden')
+elif mode==300:
+	goto_geral('F','fairy-tail')
+
 xbmcplugin.endOfDirectory(__handle__)

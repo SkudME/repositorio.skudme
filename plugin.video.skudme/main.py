@@ -12,11 +12,13 @@ import urllib, urllib2
 import xbmcaddon
 import xbmc
 import re
+import os
 
 # Get the plugin handle as an integer number.
 __handle__ = int(sys.argv[1])
 
-versao = '1.2'
+
+versao = '1.3'
 addon_id = 'plugin.video.skudme'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -26,8 +28,8 @@ oneEP = 'http://st01hd.animesproject.com.br:81/O/one-piece/MQ/episodios/'
 narEP = 'http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/episodios/'
 fairEP = 'http://st01hd.animesproject.com.br:81/F/fairy-tail-2014/MQ/episodios/'
 geralURL = 'http://st01hd.animesproject.com.br:81/'
-
-
+		  
+		  
 def addDir(name,url,mode,iconimage,infolabels):
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
 	ok=True
@@ -57,9 +59,9 @@ def listar_onepiece():
 	
 	addDir('One Piece','',0,'http://animes.zlx.com.br/imgs/series/small/30ff3cba97dd1d2.jpg',{'title': 'One Piece'})
 	addLink('Ultimo Episodio - ' +match[0],oneEP +match[0] +'.mp4',oneEP +match[0] +'.jpg')
-	addDir('Do 000 ate 718','',0,'http://animes.zlx.com.br/imgs/series/small/4cb6174c3ef8bfb.jpg',{'title': 'Do 000 ate 718'})
+	addDir('Do 000 ate 718','',0,'http://animes.zlx.com.br/imgs/series/small/30ff3cba97dd1d2.jpg',{'title': 'Do 000 ate 718'})
 	addDir('Ir para o Episodio','',110,artfolder +"goto.png",{'title': 'Ir para o Episodio'})	
-	addDir('Filmes','',13,artfolder +'filmes.png',{'title': 'Filmes'})
+	addDir('Filmes','',13,artfolder +'filmes.png',{'title': 'Filmes'})		
 
 def listar_onepiece_filmes():	
 	addLink('One Piece: The Movie','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/01.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/01.jpg')
@@ -140,6 +142,7 @@ def listar_fairyTail2014():
 def goto_geral(letra,serie):
 	keyb = xbmc.Keyboard('', 'Ir para o Episodio')
 	keyb.doModal()
+	
 	if (keyb.isConfirmed()):
 		search = keyb.getText()
 		parametro_pesquisa=urllib.quote(search)
@@ -154,7 +157,10 @@ def goto_geral(letra,serie):
 				epN = '0' +str(epN)
 			print epN
 		url = geralURL +letra +'/' +serie +'/MQ/episodios/' + str(epN)
-		addLink('Episodio - ' +str(parametro_pesquisa),url +'.mp4',url +'.jpg')
+		
+		for x in range(0, 6):
+			addLink('Episodio - ' +str(int(parametro_pesquisa)+x),url +'.mp4',url +'.jpg')
+			x+=1
 
 def obterURL(url):
 	req = urllib2.Request(url)
@@ -234,7 +240,7 @@ elif mode==311:
 	listar_fairyTailNormal_ovas()
 elif mode==32:
 	listar_fairyTail2014()
-elif mode==100:
+elif mode==110:
 	goto_geral('O','one-piece')
 elif mode==210:
 	goto_geral('N','naruto')

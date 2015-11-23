@@ -18,7 +18,7 @@ import os
 __handle__ = int(sys.argv[1])
 
 
-versao = '1.3'
+versao = '1.4'
 addon_id = 'plugin.video.skudme'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -27,9 +27,9 @@ fanart = addonfolder + '/fanart.jpg'
 oneEP = 'http://st01hd.animesproject.com.br:81/O/one-piece/MQ/episodios/'
 narEP = 'http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/episodios/'
 fairEP = 'http://st01hd.animesproject.com.br:81/F/fairy-tail-2014/MQ/episodios/'
+opmEP = 'http://st01hd.animesproject.com.br:81/O/one-punch-man/MQ/episodios/'
 geralURL = 'http://st01hd.animesproject.com.br:81/'
-		  
-		  
+
 def addDir(name,url,mode,iconimage,infolabels):
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
 	ok=True
@@ -52,13 +52,14 @@ def MenuPrincipal():
 	addDir('One Piece','',1,artfolder +'onepiece.png',{'title': 'One Piece'}) 
 	addDir('Naruto','',2,artfolder +'naruto.png',{'title': 'Naruto'})
 	addDir('Fairy Tail','',3,artfolder +'fairytail.png',{'title': 'Fairy Tail'})
+	addDir('One Punch Man','',4,artfolder +'onepunchman.png',{'title': 'One Punch Man'})
 	
 def listar_onepiece():
-	match = re.compile('<a alt=".+?" href=".+?"><u>Episódio (.+?)</u></a>').findall(obterURL('http://animes.zlx.com.br/serie/117/0/One-Piece')) 
+	match = ultimoEpGeral('one-piece')
 	print match
 	
 	addDir('One Piece','',0,'http://animes.zlx.com.br/imgs/series/small/30ff3cba97dd1d2.jpg',{'title': 'One Piece'})
-	addLink('Ultimo Episodio - ' +match[0],oneEP +match[0] +'.mp4',oneEP +match[0] +'.jpg')
+	addLink('Ultimo Episodio - ' +match,oneEP +match +'.mp4',oneEP +match +'.jpg')
 	addDir('Do 000 ate 718','',0,'http://animes.zlx.com.br/imgs/series/small/30ff3cba97dd1d2.jpg',{'title': 'Do 000 ate 718'})
 	addDir('Ir para o Episodio','',110,artfolder +"goto.png",{'title': 'Ir para o Episodio'})	
 	addDir('Filmes','',13,artfolder +'filmes.png',{'title': 'Filmes'})		
@@ -92,13 +93,13 @@ def listar_narutoNormal_filmes():
 	addLink('2006 - A Revolta dos Animais da Lua Crescente','http://st01hd.animesproject.com.br:81/N/naruto/MQ/filmes/03.mp4','http://st01hd.animesproject.com.br:81/N/naruto/MQ/filmes/03.jpg')
 
 def listar_narutoShippuuden():
-	match = re.compile('<a alt=".+?" href=".+?"><u>Episódio (.+?)</u></a>').findall(obterURL('http://animes.zlx.com.br/serie/144/0/Naruto-Shippuuden')) 
+	match = ultimoEpGeral('naruto-shippuuden')
 	print match
 	
 	addDir('Naruto: Shippuuden','',0,'http://animes.zlx.com.br/imgs/series/small/b39ad17d80d0083.jpg',{'title': 'Naruto: Shippuuden'})
-	addLink('Ultimo Episodio - ' +match[0],narEP +match[0] +'.mp4',narEP +match[0] +'.jpg')
+	addLink('Ultimo Episodio - ' +match,narEP +match +'.mp4',narEP +match +'.jpg')
 	
-	addDir('Do 000 ate ' +match[0],'',0,'http://animes.zlx.com.br/imgs/series/small/b39ad17d80d0083.jpg',{'title': 'Do 000 ate ' +match[0]})
+	addDir('Do 000 ate ' +match,'',0,'http://animes.zlx.com.br/imgs/series/small/b39ad17d80d0083.jpg',{'title': 'Do 000 ate ' +match})
 	addDir('Ir para o Episodio','',220,artfolder +"goto.png",{'title': 'Ir para o Episodio'})
 	
 	addDir('Filmes','',221,artfolder +"filmes.png",{'title': 'Filmes'})	
@@ -130,14 +131,23 @@ def listar_fairyTailNormal_ovas():
 	addLink('Fairy Tail X Rave Master','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_06.mp4','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_06.jpg')
 	
 def listar_fairyTail2014():
-	match = re.compile('<a alt=".+?" href=".+?"><u>Episódio (.+?)</u></a>').findall(obterURL('http://animes.zlx.com.br/serie/1091/0/Fairy-Tail-2014')) 
-	print match
+	match = ultimoEpGeral('fairy-tail-2014')
 	
 	addDir('Fairy Tail 2014','',0,'http://animes.zlx.com.br/imgs/series/small/7c15d47e3be614a.jpg',{'title': 'Fairy Tail'})
-	addLink('Ultimo Episodio - ' +match[0],fairEP +match[0] +'.mp4',fairEP +match[0] +'.jpg')
+	addLink('Ultimo Episodio - ' +match,fairEP +match +'-p-.mp4',fairEP +match +'-p-.jpg')
 	
-	addDir('Do 00 ate ' +match[0],'',0,'http://animes.zlx.com.br/imgs/series/small/7c15d47e3be614a.jpg',{'title': 'Do 000 ate ' +match[0]})
+	addDir('Do 00 ate ' +match,'',0,'http://animes.zlx.com.br/imgs/series/small/7c15d47e3be614a.jpg',{'title': 'Do 000 ate ' +match})
 	addDir('Ir para o Episodio','',320,artfolder +"goto.png",{'title': 'Ir para o Episodio'})
+	
+def listar_opm():
+	match = ultimoEpGeral('one-punch-man')
+	print match
+	
+	addDir('One Punch Man','',0,'http://animes.zlx.com.br/imgs/series/small/0bebc1c9c64e494.jpg',{'title': 'One Punch Man'})
+	addLink('Ultimo Episodio - ' +match,opmEP +match +'-p-.mp4',opmEP +match +'.-p-jpg')
+	
+	addDir('Do 00 ate ' +match,'',0,'http://animes.zlx.com.br/imgs/series/small/0bebc1c9c64e494.jpg',{'title': 'Do 00 ate ' +match})
+	addDir('Ir para o Episodio','',410,artfolder +"goto.png",{'title': 'Ir para o Episodio'})
 	
 def goto_geral(letra,serie):
 	keyb = xbmc.Keyboard('', 'Ir para o Episodio')
@@ -145,22 +155,49 @@ def goto_geral(letra,serie):
 	
 	if (keyb.isConfirmed()):
 		search = keyb.getText()
-		parametro_pesquisa=urllib.quote(search)
-		print serie +" epN: " +parametro_pesquisa 
-		if serie=='fairy-tail-2014' and int(parametro_pesquisa)<=81:
-			epN = parametro_pesquisa +'-p-'
-		else:
-			epN = int(parametro_pesquisa)
-			if epN > 0 and epN < 10:
-				epN = '00' +str(epN)
-			elif epN > 9 and epN < 100:
-				epN = '0' +str(epN)
-			print epN
-		url = geralURL +letra +'/' +serie +'/MQ/episodios/' + str(epN)
+		_ep = int(urllib.quote(search))
+		print serie +" _ep: " +str(_ep)
 		
-		for x in range(0, 6):
-			addLink('Episodio - ' +str(int(parametro_pesquisa)+x),url +'.mp4',url +'.jpg')
-			x+=1
+		for epN in range(_ep, int(ultimoEpGeral(serie))+1):
+			epF = str(epN)
+			_cast = ''
+			
+			if (serie=='fairy-tail-2014' or serie=='one-punch-man') and (epN<82 or epN>84):
+				_cast = '-p-'
+				
+			print str(epN) +"_cast: " +_cast
+			
+			if serie=='fairy-tail-2014' or serie=='one-punch-man':
+				if epN > 0 and epN < 10:
+					epF = '0' +str(epN)
+				elif epN > 9:
+					epF = str(epN)
+			else:
+				if epN > 0 and epN < 10:
+					epF = '00' +str(epN)
+				elif epN > 9 and epN < 100:
+					epF = '0' +str(epN)
+			
+			url = geralURL +letra +'/' +serie +'/MQ/episodios/' +epF +_cast
+			addLink('Episodio - ' +epF,url +'.mp4',url +'.jpg')
+			
+def ultimoEpGeral(serie):
+	if serie=='one-piece':
+		url = 'http://animes.zlx.com.br/serie/117/0/One-Piece'
+	elif serie=='naruto':
+		return 220
+	elif serie=='naruto-shippuuden':
+		url = 'http://animes.zlx.com.br/serie/144/0/Naruto-Shippuuden'
+	elif serie=='fairy-tail':
+		return 259
+	elif serie=='fairy-tail-2014':
+		url = 'http://animes.zlx.com.br/serie/1091/0/Fairy-Tail-2014'
+	elif serie=='one-punch-man':
+		url = 'http://animes.zlx.com.br/serie/1214/0/One-Punch-Man'
+	
+	epF = re.compile('<a alt=".+?" href=".+?"><u>Episódio (.+?)</u></a>').findall(obterURL(url)) 
+	
+	return str(epF[0])
 
 def obterURL(url):
 	req = urllib2.Request(url)
@@ -224,6 +261,8 @@ elif mode==2:
 	listar_naruto()
 elif mode==3:
 	listar_fairyTail()
+elif mode==4:
+	listar_opm()
 elif mode==13:
 	listar_onepiece_filmes()
 elif mode==21:
@@ -250,5 +289,7 @@ elif mode==310:
 	goto_geral('F','fairy-tail')
 elif mode==320:
 	goto_geral('F','fairy-tail-2014')
-
+elif mode==410:
+	goto_geral('O','one-punch-man')
+	
 xbmcplugin.endOfDirectory(__handle__)

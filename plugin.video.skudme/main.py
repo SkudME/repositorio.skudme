@@ -18,7 +18,7 @@ import os
 __handle__ = int(sys.argv[1])
 
 
-versao = '1.4'
+versao = '1.5'
 addon_id = 'plugin.video.skudme'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -195,8 +195,11 @@ def ultimoEpGeral(serie):
 	elif serie=='one-punch-man':
 		url = 'http://animes.zlx.com.br/serie/1214/0/One-Punch-Man'
 	
-	epF = re.compile('<a alt=".+?" href=".+?"><u>Episódio (.+?)</u></a>').findall(obterURL(url)) 
+	epF = re.compile('Assista online o último vídeo lançado do anime .+?, o Episódio (.+?)"').findall(obterURL(url)) 
+	#'<a alt="Assista online o último vídeo lançado do anime One Punch Man, o Episódio 09" href="/serie/1214/1954/One-Punch-Man-Episodio-09">Episódio 09</a>'
 	
+	#
+	print "epF: " +str(epF)
 	return str(epF[0])
 
 def obterURL(url):

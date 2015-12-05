@@ -18,17 +18,17 @@ import os
 __handle__ = int(sys.argv[1])
 
 
-versao = '1.5'
+versao = '1.6'
 addon_id = 'plugin.video.skudme'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
 artfolder = addonfolder + '/resources/img/'
 fanart = addonfolder + '/fanart.jpg'
-oneEP = 'http://st01hd.animesproject.com.br:81/O/one-piece/MQ/episodios/'
-narEP = 'http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/episodios/'
-fairEP = 'http://st01hd.animesproject.com.br:81/F/fairy-tail-2014/MQ/episodios/'
-opmEP = 'http://st01hd.animesproject.com.br:81/O/one-punch-man/MQ/episodios/'
-geralURL = 'http://st01hd.animesproject.com.br:81/'
+oneEP = 'http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/episodios/'
+narEP = 'http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/episodios/'
+fairEP = 'http://st01hd.animesproject.com.br/vod/F/fairy-tail-2014/MQ/episodios/'
+opmEP = 'http://st01hd.animesproject.com.br/vod/O/one-punch-man/MQ/episodios/'
+geralURL = 'http://st01hd.animesproject.com.br/vod/'
 
 def addDir(name,url,mode,iconimage,infolabels):
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
@@ -65,18 +65,18 @@ def listar_onepiece():
 	addDir('Filmes','',13,artfolder +'filmes.png',{'title': 'Filmes'})		
 
 def listar_onepiece_filmes():	
-	addLink('One Piece: The Movie','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/01.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/01.jpg')
-	addLink('Aventura na Ilha Nejimaki','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/02.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/02.jpg')
-	addLink('O Reino de Chopper na Ilha dos Estranhos Animais ','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/03.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/03.jpg')
-	addLink('Aventura Mortal!','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/04.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/04.jpg')
-	addLink('A Maldição da Espada Sagrada','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/05.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/05.jpg')
-	addLink('Barão Omatsuri e a Ilha Secreta','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/06.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/06.jpg')
-	addLink('Os Mechas do Castelo Karakuri!','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/07.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/07.jpg')
-	addLink('Episódio de Alabasta: A Princesa do Deserto e os Piratas','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/08.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/08.jpg')
-	addLink('Episódio de Chopper Plus: Bloom no inverno, Milagre de Sakura','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/09.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/09.jpg')
-	addLink('One Piece Film: World Strong','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/10.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/10.jpg')
-	addLink('One Piece 3D: Perseguição aos Chapéus de Palha','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/11.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/11.jpg')
-	addLink('One Piece Film: Z','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/12.mp4','http://st01hd.animesproject.com.br:81/O/one-piece/MQ/filmes/12.jpg')
+	addLink('One Piece: The Movie','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/01.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/01.jpg')
+	addLink('Aventura na Ilha Nejimaki','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/02.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/02.jpg')
+	addLink('O Reino de Chopper na Ilha dos Estranhos Animais ','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/03.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/03.jpg')
+	addLink('Aventura Mortal!','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/04.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/04.jpg')
+	addLink('A Maldição da Espada Sagrada','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/05.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/05.jpg')
+	addLink('Barão Omatsuri e a Ilha Secreta','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/06.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/06.jpg')
+	addLink('Os Mechas do Castelo Karakuri!','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/07.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/07.jpg')
+	addLink('Episódio de Alabasta: A Princesa do Deserto e os Piratas','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/08.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/08.jpg')
+	addLink('Episódio de Chopper Plus: Bloom no inverno, Milagre de Sakura','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/09.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/09.jpg')
+	addLink('One Piece Film: World Strong','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/10.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/10.jpg')
+	addLink('One Piece 3D: Perseguição aos Chapéus de Palha','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/11.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/11.jpg')
+	addLink('One Piece Film: Z','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/12.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/12.jpg')
 	
 def listar_naruto():
 	addDir('Naruto','',21,'http://animes.zlx.com.br/imgs/series/small/4cb6174c3ef8bfb.jpg',{'title': 'Naruto'})
@@ -88,9 +88,9 @@ def listar_narutoNormal():
 	addDir('Filmes','',211,artfolder +"filmes.png",{'title': 'Filmes'})	
 
 def listar_narutoNormal_filmes():
-	addLink('2004 - Naruto O Filme: O Confronto Ninja no Pais da Neve','http://st01hd.animesproject.com.br:81/N/naruto/MQ/filmes/01.mp4','http://st01hd.animesproject.com.br:81/N/naruto/MQ/filmes/01.jpg')
-	addLink('2005 - As Ruínas Fantasmas nos Confins da Terra','http://st01hd.animesproject.com.br:81/N/naruto/MQ/filmes/02.mp4','http://st01hd.animesproject.com.br:81/N/naruto/MQ/filmes/02.jpg')
-	addLink('2006 - A Revolta dos Animais da Lua Crescente','http://st01hd.animesproject.com.br:81/N/naruto/MQ/filmes/03.mp4','http://st01hd.animesproject.com.br:81/N/naruto/MQ/filmes/03.jpg')
+	addLink('2004 - Naruto O Filme: O Confronto Ninja no Pais da Neve','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/01.mp4','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/01.jpg')
+	addLink('2005 - As Ruínas Fantasmas nos Confins da Terra','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/02.mp4','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/02.jpg')
+	addLink('2006 - A Revolta dos Animais da Lua Crescente','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/03.mp4','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/03.jpg')
 
 def listar_narutoShippuuden():
 	match = ultimoEpGeral('naruto-shippuuden')
@@ -105,13 +105,13 @@ def listar_narutoShippuuden():
 	addDir('Filmes','',221,artfolder +"filmes.png",{'title': 'Filmes'})	
 	
 def listar_narutoShippuuden_filmes():
-	addLink('2007 - Naruto Shippuden the Movie','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/01.mp4','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/01.jpg')
-	addLink('2008 - Naruto Shippuden the Movie: Bonds','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/02.mp4','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/02.jpg')
-	addLink('2009 - Naruto Shippuden the Movie: The Will of Fire','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/03.mp4','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/03.jpg')
-	addLink('2010 - Naruto Shippuden the Movie: The Lost Tower','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/04.mp4','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/04.jpg')
-	addLink('2011 - Naruto the Movie: Blood Prison','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/05.mp4','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/05.jpg')
-	addLink('2012 - Road to Ninja: Naruto the Movie','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/06.mp4','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/06.jpg')
-	addLink('2014 - The Last: Naruto the Movie','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/07.mp4','http://st01hd.animesproject.com.br:81/N/naruto-shippuuden/MQ/filmes/07.jpg')
+	addLink('2007 - Naruto Shippuden the Movie','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/01.mp4','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/01.jpg')
+	addLink('2008 - Naruto Shippuden the Movie: Bonds','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/02.mp4','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/02.jpg')
+	addLink('2009 - Naruto Shippuden the Movie: The Will of Fire','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/03.mp4','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/03.jpg')
+	addLink('2010 - Naruto Shippuden the Movie: The Lost Tower','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/04.mp4','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/04.jpg')
+	addLink('2011 - Naruto the Movie: Blood Prison','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/05.mp4','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/05.jpg')
+	addLink('2012 - Road to Ninja: Naruto the Movie','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/06.mp4','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/06.jpg')
+	addLink('2014 - The Last: Naruto the Movie','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/07.mp4','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/07.jpg')
 
 def listar_fairyTail():
 	addDir('Fairy Tail','',31,'http://animes.zlx.com.br/imgs/series/small/205a078e9a010af.jpg',{'title': 'Fairy Tail'})
@@ -123,12 +123,12 @@ def listar_fairyTailNormal():
 	addDir('Ovas','',311,artfolder +"ovas.png",{'title': 'Ovas'})
 
 def listar_fairyTailNormal_ovas():
-	addLink('Fairy Hills','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_01.mp4','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_01.jpg')
-	addLink('Fairy Academy','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_02.mp4','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_02.jpg')
-	addLink('Dias Memoráveis','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_03.mp4','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_03.jpg')
-	addLink('Acampamento de Treinamento das Fadas','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_04.mp4','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_04.jpg')
-	addLink('Dokidoki Ryuuzetsu Land','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_05.mp4','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_05.jpg')
-	addLink('Fairy Tail X Rave Master','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_06.mp4','http://st01hd.animesproject.com.br:81/F/fairy-tail/MQ/ovas/OVA_06.jpg')
+	addLink('Fairy Hills','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_01.mp4','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_01.jpg')
+	addLink('Fairy Academy','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_02.mp4','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_02.jpg')
+	addLink('Dias Memoráveis','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_03.mp4','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_03.jpg')
+	addLink('Acampamento de Treinamento das Fadas','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_04.mp4','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_04.jpg')
+	addLink('Dokidoki Ryuuzetsu Land','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_05.mp4','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_05.jpg')
+	addLink('Fairy Tail X Rave Master','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_06.mp4','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_06.jpg')
 	
 def listar_fairyTail2014():
 	match = ultimoEpGeral('fairy-tail-2014')

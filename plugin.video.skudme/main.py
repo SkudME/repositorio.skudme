@@ -18,7 +18,7 @@ import os
 __handle__ = int(sys.argv[1])
 
 
-versao = '1.6'
+versao = '1.7'
 addon_id = 'plugin.video.skudme'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -65,6 +65,7 @@ def listar_onepiece():
 	addDir('Filmes','',13,artfolder +'filmes.png',{'title': 'Filmes'})		
 
 def listar_onepiece_filmes():	
+	addDir('Filmes','',13,artfolder +'filmes.png',{'title': 'Filmes'})		
 	addLink('One Piece: The Movie','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/01.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/01.jpg')
 	addLink('Aventura na Ilha Nejimaki','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/02.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/02.jpg')
 	addLink('O Reino de Chopper na Ilha dos Estranhos Animais ','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/03.mp4','http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/filmes/03.jpg')
@@ -83,11 +84,13 @@ def listar_naruto():
 	addDir('Naruto: Shippuuden','',22,'http://animes.zlx.com.br/imgs/series/small/b39ad17d80d0083.jpg',{'title': 'Naruto: Shippuuden'})
 
 def listar_narutoNormal():
+	addDir('Naruto','',21,'http://animes.zlx.com.br/imgs/series/small/4cb6174c3ef8bfb.jpg',{'title': 'Naruto'})
 	addDir('Do 000 ate 220','',0,'http://animes.zlx.com.br/imgs/series/small/4cb6174c3ef8bfb.jpg',{'title': 'Do 000 ate 220'})
 	addDir('Ir para o Episodio','',210,artfolder +"goto.png",{'title': 'Ir para o Episodio'})	
 	addDir('Filmes','',211,artfolder +"filmes.png",{'title': 'Filmes'})	
 
 def listar_narutoNormal_filmes():
+	addDir('Filmes','',211,artfolder +"filmes.png",{'title': 'Filmes'})	
 	addLink('2004 - Naruto O Filme: O Confronto Ninja no Pais da Neve','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/01.mp4','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/01.jpg')
 	addLink('2005 - As Ruínas Fantasmas nos Confins da Terra','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/02.mp4','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/02.jpg')
 	addLink('2006 - A Revolta dos Animais da Lua Crescente','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/03.mp4','http://st01hd.animesproject.com.br/vod/N/naruto/MQ/filmes/03.jpg')
@@ -105,6 +108,7 @@ def listar_narutoShippuuden():
 	addDir('Filmes','',221,artfolder +"filmes.png",{'title': 'Filmes'})	
 	
 def listar_narutoShippuuden_filmes():
+	addDir('Filmes','',221,artfolder +"filmes.png",{'title': 'Filmes'})	
 	addLink('2007 - Naruto Shippuden the Movie','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/01.mp4','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/01.jpg')
 	addLink('2008 - Naruto Shippuden the Movie: Bonds','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/02.mp4','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/02.jpg')
 	addLink('2009 - Naruto Shippuden the Movie: The Will of Fire','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/03.mp4','http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/filmes/03.jpg')
@@ -118,11 +122,13 @@ def listar_fairyTail():
 	addDir('Fairy Tail 2014','',32,'http://animes.zlx.com.br/imgs/series/small/7c15d47e3be614a.jpg',{'title': 'Fairy Tail 2014'})
 	
 def listar_fairyTailNormal():
+	addDir('Fairy Tail','',31,'http://animes.zlx.com.br/imgs/series/small/205a078e9a010af.jpg',{'title': 'Fairy Tail'})
 	addDir('Do 000 ate 259','',0,'http://animes.zlx.com.br/imgs/series/small/205a078e9a010af.jpg',{'title': 'Do 000 ate 259'})
 	addDir('Ir para o Episodio','',310,artfolder +"goto.png",{'title': 'Ir para o Episodio'})	
 	addDir('Ovas','',311,artfolder +"ovas.png",{'title': 'Ovas'})
 
 def listar_fairyTailNormal_ovas():
+	addDir('Ovas','',311,artfolder +"ovas.png",{'title': 'Ovas'})
 	addLink('Fairy Hills','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_01.mp4','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_01.jpg')
 	addLink('Fairy Academy','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_02.mp4','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_02.jpg')
 	addLink('Dias Memoráveis','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_03.mp4','http://st01hd.animesproject.com.br/vod/F/fairy-tail/MQ/ovas/OVA_03.jpg')
@@ -148,17 +154,31 @@ def listar_opm():
 	
 	addDir('Do 00 ate ' +match,'',0,'http://animes.zlx.com.br/imgs/series/small/0bebc1c9c64e494.jpg',{'title': 'Do 00 ate ' +match})
 	addDir('Ir para o Episodio','',410,artfolder +"goto.png",{'title': 'Ir para o Episodio'})
+	addDir('Ovas','',411,artfolder +"ovas.png",{'title': 'Ovas'})
+
+def listar_opm_ovas():
+	addDir('Ovas','',411,artfolder +"ovas.png",{'title': 'Ovas'})
+	addLink('One Punch Man Ova 1','http://st01hd.animesproject.com.br/vod/O/one-punch-man/MQ/ovas/OVA_01.mp4','http://st01hd.animesproject.com.br/vod/O/one-punch-man/MQ/ovas/OVA_01.jpg')
 	
 def goto_geral(letra,serie):
-	keyb = xbmc.Keyboard('', 'Ir para o Episodio')
-	keyb.doModal()
+	ultimoEP = ultimoEpGeral(serie)
 	
+	if str(ultimoEP) == "???":
+		keyb = xbmc.Keyboard('', 'Sem ultimo ep de momento, defina um numero maximo')	
+		keyb.doModal()
+		if (keyb.isConfirmed()):
+			search = keyb.getText()
+			ultimoEP = int(urllib.quote(search))
+	
+	keyb = xbmc.Keyboard('', 'Ir para o Episodio')	
+	keyb.doModal()
 	if (keyb.isConfirmed()):
 		search = keyb.getText()
 		_ep = int(urllib.quote(search))
 		print serie +" _ep: " +str(_ep)
 		
-		for epN in range(_ep, int(ultimoEpGeral(serie))+1):
+		
+		for epN in range(_ep, int(ultimoEP)+1):
 			epF = str(epN)
 			_cast = ''
 			
@@ -200,6 +220,11 @@ def ultimoEpGeral(serie):
 	
 	#
 	print "epF: " +str(epF)
+	try:
+		if str(epF[0]) == "":
+			epF[0] = "???"
+	except:	
+		return "???"
 	return str(epF[0])
 
 def obterURL(url):
@@ -282,6 +307,8 @@ elif mode==311:
 	listar_fairyTailNormal_ovas()
 elif mode==32:
 	listar_fairyTail2014()
+elif mode==411:
+	listar_opm_ovas()
 elif mode==110:
 	goto_geral('O','one-piece')
 elif mode==210:

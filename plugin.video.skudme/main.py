@@ -18,7 +18,7 @@ import os
 __handle__ = int(sys.argv[1])
 
 
-versao = '1.7'
+versao = '1.8'
 addon_id = 'plugin.video.skudme'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -28,6 +28,9 @@ oneEP = 'http://st01hd.animesproject.com.br/vod/O/one-piece/MQ/episodios/'
 narEP = 'http://st01hd.animesproject.com.br/vod/N/naruto-shippuuden/MQ/episodios/'
 fairEP = 'http://st01hd.animesproject.com.br/vod/F/fairy-tail-2014/MQ/episodios/'
 opmEP = 'http://st01hd.animesproject.com.br/vod/O/one-punch-man/MQ/episodios/'
+kob1EP = 'http://st01hd.animesproject.com.br/vod/K/kuroko-no-basket/MQ/episodios/'
+kob2EP = 'http://st01hd.animesproject.com.br/vod/K/kuroko-no-basket-2/MQ/episodios/'
+kob3EP = 'http://st01hd.animesproject.com.br/vod/K/kuroko-no-basket-3/MQ/episodios/'
 geralURL = 'http://st01hd.animesproject.com.br/vod/'
 
 def addDir(name,url,mode,iconimage,infolabels):
@@ -53,6 +56,7 @@ def MenuPrincipal():
 	addDir('Naruto','',2,artfolder +'naruto.png',{'title': 'Naruto'})
 	addDir('Fairy Tail','',3,artfolder +'fairytail.png',{'title': 'Fairy Tail'})
 	addDir('One Punch Man','',4,artfolder +'onepunchman.png',{'title': 'One Punch Man'})
+	addDir('Kuroko no Basket','',5,artfolder +'kuroko.png',{'title': 'Kuroko no Basket'})
 	
 def listar_onepiece():
 	match = ultimoEpGeral('one-piece')
@@ -159,6 +163,26 @@ def listar_opm():
 def listar_opm_ovas():
 	addDir('Ovas','',411,artfolder +"ovas.png",{'title': 'Ovas'})
 	addLink('One Punch Man Ova 1','http://st01hd.animesproject.com.br/vod/O/one-punch-man/MQ/ovas/OVA_01.mp4','http://st01hd.animesproject.com.br/vod/O/one-punch-man/MQ/ovas/OVA_01.jpg')
+
+def listar_kob():
+	addDir('Kuroko no Basket 1','',51,'http://animes.zlx.com.br/imgs/series/small/297f0d8181f3f9e.jpg',{'title': 'Kuroko no Basket 1'})
+	addDir('Kuroko no Basket 2','',52,'http://animes.zlx.com.br/imgs/series/small/42c34f613cdc731.jpg',{'title': 'Kuroko no Basket 2'})
+	addDir('Kuroko no Basket 3','',53,'http://animes.zlx.com.br/imgs/series/small/182a5941eae31f2.jpg',{'title': 'Kuroko no Basket 3'})
+
+def listar_kob1():
+	addDir('Kuroko no Basket 1','',51,'http://animes.zlx.com.br/imgs/series/small/297f0d8181f3f9e.jpg',{'title': 'Kuroko no Basket 1'})
+	addDir('Do 00 ate 25','',0,'http://animes.zlx.com.br/imgs/series/small/297f0d8181f3f9e.jpg',{'title': 'Do 00 ate 25'})
+	addDir('Ir para o Episodio','',510,artfolder +"goto.png",{'title': 'Ir para o Episodio'})	
+
+def listar_kob2():
+	addDir('Kuroko no Basket 2','',52,'http://animes.zlx.com.br/imgs/series/small/42c34f613cdc731.jpg',{'title': 'Kuroko no Basket 2'})
+	addDir('Do 00 ate 25','',0,'http://animes.zlx.com.br/imgs/series/small/42c34f613cdc731.jpg',{'title': 'Do 00 ate 25'})
+	addDir('Ir para o Episodio','',520,artfolder +"goto.png",{'title': 'Ir para o Episodio'})	
+
+def listar_kob3():
+	addDir('Kuroko no Basket 3','',53,'http://animes.zlx.com.br/imgs/series/small/182a5941eae31f2.jpg',{'title': 'Kuroko no Basket 3'})
+	addDir('Do 00 ate 25','',0,'http://animes.zlx.com.br/imgs/series/small/182a5941eae31f2.jpg',{'title': 'Do 00 ate 25'})
+	addDir('Ir para o Episodio','',530,artfolder +"goto.png",{'title': 'Ir para o Episodio'})	
 	
 def goto_geral(letra,serie):
 	ultimoEP = ultimoEpGeral(serie)
@@ -182,12 +206,12 @@ def goto_geral(letra,serie):
 			epF = str(epN)
 			_cast = ''
 			
-			if (serie=='fairy-tail-2014' or serie=='one-punch-man') and (epN<82 or epN>84):
+			if (serie=='fairy-tail-2014' or serie=='one-punch-man' or serie=='kuroko-no-basket-3') and (epN<82 or epN>84):
 				_cast = '-p-'
 				
 			print str(epN) +"_cast: " +_cast
 			
-			if serie=='fairy-tail-2014' or serie=='one-punch-man':
+			if serie=='fairy-tail-2014' or serie=='one-punch-man' or serie=='kuroko-no-basket' or serie=='kuroko-no-basket-2' or serie=='kuroko-no-basket-3':
 				if epN > 0 and epN < 10:
 					epF = '0' +str(epN)
 				elif epN > 9:
@@ -214,7 +238,9 @@ def ultimoEpGeral(serie):
 		url = 'http://animes.zlx.com.br/serie/1091/0/Fairy-Tail-2014'
 	elif serie=='one-punch-man':
 		url = 'http://animes.zlx.com.br/serie/1214/0/One-Punch-Man'
-	
+	elif serie=='kuroko-no-basket' or serie=='kuroko-no-basket-2' or serie=='kuroko-no-basket-3':
+		return 25
+		
 	epF = re.compile('Assista online o último vídeo lançado do anime .+?, o Episódio (.+?)"').findall(obterURL(url)) 
 	#'<a alt="Assista online o último vídeo lançado do anime One Punch Man, o Episódio 09" href="/serie/1214/1954/One-Punch-Man-Episodio-09">Episódio 09</a>'
 	
@@ -291,6 +317,8 @@ elif mode==3:
 	listar_fairyTail()
 elif mode==4:
 	listar_opm()
+elif mode==5:
+	listar_kob()
 elif mode==13:
 	listar_onepiece_filmes()
 elif mode==21:
@@ -309,6 +337,12 @@ elif mode==32:
 	listar_fairyTail2014()
 elif mode==411:
 	listar_opm_ovas()
+elif mode==51:
+	listar_kob1()
+elif mode==52:
+	listar_kob2()
+elif mode==53:
+	listar_kob3()
 elif mode==110:
 	goto_geral('O','one-piece')
 elif mode==210:
@@ -321,5 +355,11 @@ elif mode==320:
 	goto_geral('F','fairy-tail-2014')
 elif mode==410:
 	goto_geral('O','one-punch-man')
+elif mode==510:
+	goto_geral('K','kuroko-no-basket')
+elif mode==520:
+	goto_geral('K','kuroko-no-basket-2')	
+elif mode==530:
+	goto_geral('K','kuroko-no-basket-3')
 	
 xbmcplugin.endOfDirectory(__handle__)

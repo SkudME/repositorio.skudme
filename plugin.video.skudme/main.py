@@ -18,7 +18,7 @@ import os
 __handle__ = int(sys.argv[1])
 
 
-versao = '1.8'
+versao = '1.9'
 addon_id = 'plugin.video.skudme'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -32,6 +32,9 @@ kob1EP = 'http://st01hd.animesproject.com.br/vod/K/kuroko-no-basket/MQ/episodios
 kob2EP = 'http://st01hd.animesproject.com.br/vod/K/kuroko-no-basket-2/MQ/episodios/'
 kob3EP = 'http://st01hd.animesproject.com.br/vod/K/kuroko-no-basket-3/MQ/episodios/'
 geralURL = 'http://st01hd.animesproject.com.br/vod/'
+
+
+urlAnimeActual = 'https://www.anitube.es/anime/ansatsu-kyoushitsu'
 
 def addDir(name,url,mode,iconimage,infolabels):
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
@@ -50,13 +53,52 @@ def addLink(name,url,iconimage):
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
 	return ok
 
-
+def getInfo(url, infoN):
+	if infoN == 1:		
+		animeName = re.compile('<h2 class="panel-title"><span itemprop="name">(.+?)</span></h2>').findall(obterURL(url))
+		return animeName[0]
+	elif infoN == 2:
+		imgAnime = re.compile('<img class=" img-hover" src="(.+?)" alt=".+?" title=".+?" width="250">').findall(obterURL(url))
+		return 'https://www.anitube.es' +imgAnime[0]
+	elif infoN == 3:
+		nTotalEps = re.compile('<span itemprop="numberofEpisodes">.+?/(.+?)</span>').findall(obterURL(url))
+		return int(nTotalEps[0])
+	else:
+		return 'Erro'
+	
+	
 def MenuPrincipal():
+	addDir(getInfo(urlAnimeActual,1),'',6,getInfo(urlAnimeActual,2),{'title':getInfo(urlAnimeActual,1)})
+	
 	addDir('One Piece','',1,artfolder +'onepiece.png',{'title': 'One Piece'}) 
 	addDir('Naruto','',2,artfolder +'naruto.png',{'title': 'Naruto'})
 	addDir('Fairy Tail','',3,artfolder +'fairytail.png',{'title': 'Fairy Tail'})
 	addDir('One Punch Man','',4,artfolder +'onepunchman.png',{'title': 'One Punch Man'})
 	addDir('Kuroko no Basket','',5,artfolder +'kuroko.png',{'title': 'Kuroko no Basket'})
+	
+def listarAnime():
+	AnimeName = getInfo(urlAnimeActual,1)
+	nTotalEps = getInfo(urlAnimeActual, 3)
+	nPaginas = 1
+	
+	addDir(AnimeName +' - ' +str(nTotalEps) +' Eps','',0,getInfo(urlAnimeActual,2),{'title':AnimeName +' ' +str(nTotalEps) +' Eps'})
+	
+	if nTotalEps % 12 == 0:
+		nPaginas = nTotalEps/12
+	else:
+		nPaginas += int(nTotalEps)
+	
+	for epN in range(1, nPaginas+1):
+		printEps(AnimeName, urlAnimeActual +'/page/' +str(epN))
+		
+def printEps(animeName, url):
+	EPSurl = re.compile('<a itemprop="url" href="(.+?)>').findall(obterURL(url))
+	EPS = re.compile('<img src="(.+?)" title="(.+?)" alt=".+?"  class="img-responsive "/>').findall(obterURL(url))	
+	for n in range(0, len(EPS)):
+		addDir(EPS[n][1],'',0,'https://www.anitube.es' +EPS[n][0],{'title':EPS[n][1]})
+		
+def verEp():
+	eps = 1
 	
 def listar_onepiece():
 	match = ultimoEpGeral('one-piece')
@@ -309,6 +351,8 @@ print ("iconimage: "+str(iconimage))
 
 if mode==None: 
 	MenuPrincipal()   
+elif mode==0:
+	verEp()
 elif mode==1:
 	listar_onepiece()
 elif mode==2:
@@ -319,6 +363,8 @@ elif mode==4:
 	listar_opm()
 elif mode==5:
 	listar_kob()
+elif mode==6:
+	listarAnime()
 elif mode==13:
 	listar_onepiece_filmes()
 elif mode==21:

@@ -1,3 +1,9 @@
+2.0(28/03/2017):
+Leitor do site Anitube.es, com alguns erros quantos as paginas de algumas letras
+
+1.9(28/03/2017):
+Add Ansatsu Kyoushitsu
+
 1.8(11/12/2015):
 Add Kuroko no Basket
 
